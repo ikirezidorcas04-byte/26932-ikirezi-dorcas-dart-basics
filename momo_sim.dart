@@ -5,17 +5,17 @@ final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
 void main() {
-  print('Reg no: \ | D = \ | T = \');
+  print('Reg no: $regNo | D = $d | T = $t');
 
   print('\n--- Testing isValidPin ---');
-  print('12345: \');
-  print('77777: \');
-  print('4821: \');
-  print('48a21: \');
-  print('4821\: \');
+  print('12345: ${isValidPin('12345')}');
+  print('77777: ${isValidPin('77777')}');
+  print('4821: ${isValidPin('4821')}');
+  print('48a21: ${isValidPin('48a21')}');
+  print('4821$d: ${isValidPin('4821$d')}');
 
   int balance = 20000 + t * 500;
-  print('\nStarting balance: \');
+  print('\nStarting balance: ${formatRwf(balance)}');
 
   int sendAmount = (d + 1) * 3000;
   balance = sendMoney(balance, sendAmount);
@@ -25,7 +25,7 @@ void main() {
   balance = buyAirtime(balance, 1000);
   balance = sendMoney(balance, 200000);
 
-  print('Final balance: \');
+  print('Final balance: ${formatRwf(balance)}');
 
   print('\n--- Additional Tests ---');
   print(formatRwf(0));
@@ -63,7 +63,7 @@ String formatRwf(int amount) {
   if (isNegative) {
     result = '-' + result;
   }
-  return '\ RWF';
+  return '$result RWF';
 }
 
 bool isValidPin(String pin) {
@@ -98,7 +98,7 @@ int sendMoney(int balance, int amount) {
     return balance;
   }
   int newBalance = balance - (amount + fee);
-  print('Sent \ (fee \$.{formatRwf(fee)}). New balance: \');
+  print('Sent ${formatRwf(amount)} (fee ${formatRwf(fee)}). New balance: ${formatRwf(newBalance)}');
   return newBalance;
 }
 
@@ -113,6 +113,6 @@ int buyAirtime(int balance, int amount) {
     return balance;
   }
   int newBalance = balance - amount;
-  print('Bought airtime \. New balance: \');
+  print('Bought airtime ${formatRwf(amount)}. New balance: ${formatRwf(newBalance)}');
   return newBalance;
 }

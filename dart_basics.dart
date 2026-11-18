@@ -5,7 +5,7 @@ final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
 void main() {
-  print('Reg no: \ | D = \ | T = \');
+  print('Reg no: $regNo | D = $d | T = $t');
 
   print('');
   countVowels('Ikirezi Dorcas');
@@ -34,7 +34,7 @@ int countVowels(String text) {
       count++;
     }
   }
-  print('\ has \ vowels');
+  print('$text has $count vowels');
   return count;
 }
 
@@ -46,7 +46,7 @@ String initials(String fullName) {
   }
   String result = '';
   for (int i = 0; i < parts.length; i++) {
-    result += '\.';
+    result += '${parts[i][0].toUpperCase()}.';
   }
   return result;
 }
@@ -87,7 +87,7 @@ void momoReceiptPrinter() {
   while (i <= limit) {
     int amount = i * 4000 + t * 100;
     int fee = momoFee(amount);
-    print('Receipt \ | \ RWF | fee \ RWF | to \');
+    print('Receipt $i | $amount RWF | fee $fee RWF | to $masked');
     i++;
   }
 }
